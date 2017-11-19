@@ -1,13 +1,47 @@
 ---
-- name: add gpg key
-  rpm_key:
-    key: http://releases.usacloud.jp/usacloud/repos/GPG-KEY-usacloud
-- name: add repository
-  yum_repository:
-    name: usacloud
-    description: usacloud
-    baseurl: http://releases.usacloud.jp/usacloud/repos/centos/$basearch
-    gpgcheck: yes
+- block:
+  - name: import gpg key
+    rpm_key:
+      key: https://usacloud.b.sakurastorage.jp/repos/GPG-KEY-usacloud
+  - name: add repository
+    yum_repository:
+      name: usacloud
+      description: usacloud
+      baseurl: https://usacloud.b.sakurastorage.jp/repos/centos/$basearch
+      gpgcheck: true
+      file: usacloud
+  - name: install usacloud
+    yum:
+      name: usacloud
+  become: true
+  when: ansible_os_family == 'RedHat'
+- block:
+  - name: install apt-transport-https
+    apt:
+      name: apt-transport-https
+  - name: import gpg key
+    apt_key:
+      url: https://usacloud.b.sakurastorage.jp/repos/GPG-KEY-usacloud
+  - name: add repository
+    apt_repository:
+      repo: deb https://usacloud.b.sakurastorage.jp/repos/debian /
+      filename: usacloud
+  - name: install usacloud
+    apt:
+      name: usacloud
+      update_cache: true
+  become: true
+  when: ansible_os_family == 'Debian'
+- block:
+    - name: add repository
+      homebrew_tap:
+        name: sacloud/homebrew-usacloud
+    - name: install usacloud
+      homebrew:
+        name: usacloud
+  become: false
+  when: ansible_os_family == 'Darwin'
 - name: install usacloud
-  yum:
-    name: usacloud
+  win_chocolatey:
+    name: all
+  when: ansible_os_family == 'Windows'
