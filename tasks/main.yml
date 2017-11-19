@@ -43,5 +43,5 @@
   when: ansible_os_family == 'Darwin'
 - name: install usacloud
   win_chocolatey:
-    name: all
+    name: usacloud
   when: ansible_os_family == 'Windows'
