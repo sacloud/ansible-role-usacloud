@@ -5,11 +5,14 @@ galaxy_info:
   min_ansible_version: 2.1
   platforms:
     - name: EL
-      version: 7
+      versions:
+        - 7
     - name: Debian
-      version: 9
+      versions:
+        - 9
     - name: Ubuntu
-      version: 16
+      versions:
+        - 16
   galaxy_tags: []
 
 dependencies: []
