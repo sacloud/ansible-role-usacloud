@@ -5,12 +5,18 @@ driver:
   name: vagrant
 vagrant:
   platforms:
-    - name: centos
+    - name: centos7
       box: bento/centos-7
+    - name: centos6
+      box: bento/centos-6
     - name: xenial
       box: bento/ubuntu-16.04
+    - name: trusty
+      box: bento/ubuntu-14.04
     - name: stretch
       box: bento/debian-9
+    - name: jessie
+      box: bento/debian-8
   providers:
     - name: virtualbox
       type: virtualbox
