@@ -1,6 +1,6 @@
 galaxy_info:
   author: wate
-  description: install "Unofficial" CLI client for the Sakura Cloud
+  description: install CLI client for the Sakura Cloud
   license: MIT
   min_ansible_version: 2.1
   platforms:
