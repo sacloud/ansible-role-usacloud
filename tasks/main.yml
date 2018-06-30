@@ -3,6 +3,7 @@
   - name: import gpg key
     rpm_key:
       key: https://releases.usacloud.jp/usacloud/repos/GPG-KEY-usacloud
+      validate_certs: "{{ true if ansible_python_version is version_compare('2.7.9', '>=') else false }}"
   - name: add repository
     yum_repository:
       name: usacloud
