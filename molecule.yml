@@ -9,10 +9,10 @@ vagrant:
       box: bento/centos-7
     - name: centos6
       box: bento/centos-6
+    - name: bionic
+      box: bento/ubuntu-18.04
     - name: xenial
       box: bento/ubuntu-16.04
-    - name: trusty
-      box: bento/ubuntu-14.04
     - name: stretch
       box: bento/debian-9
     - name: jessie
